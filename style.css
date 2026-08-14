@@ -52,6 +52,10 @@ h1{font-size:clamp(32px,5.5vw,52px);line-height:1.08;margin:0 0 .35em;
 .go{font-weight:700;font-size:15px;color:var(--accent)}
 
 .pagehead{margin-bottom:8px}
+.soon{margin-top:34px;padding:clamp(20px,4vw,36px);background:var(--field);
+  border-radius:12px;max-width:62ch}
+.soon p{margin:0 0 14px}
+.soon p:last-child{margin:0}
 .books{display:grid;gap:22px;margin-top:32px;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
 .book{display:block;text-decoration:none;color:var(--ink);border-radius:12px;
