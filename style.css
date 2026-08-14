@@ -1,94 +1,149 @@
-/* Milo & Moon — derived from cover_layout.py, so the site and the
-   printed covers cannot drift apart. --field is set per page. */
+/* Milo & Moon — every colour here comes out of cover_layout.py and
+   build_pdf.py, so the site and the printed books cannot drift apart. */
 :root{
-  --ink:#2A3440;            /* BODY_INK: the type on every printed cover */
-  --accent:#14646E;         /* the badge teal, identical on all 11 covers */
-  --badge-ink:#FFF6E4;      /* INK: the type inside the badge */
-  --paper:#FFFFFF;
-  --rule:#E3DED4;
-  --soft:#5D6672;
+  --ink:#2A3440;              /* BODY_INK: the type on every printed cover */
+  --accent:#14646E;           /* the badge teal, identical on all 11 covers */
+  --badge-ink:#FFF6E4;        /* INK: the cream type inside the badge */
+  --paper:#FFFDF9;            /* warm, not clinical white */
+  --rule:#EDE6DA;
+  --soft:#5F6874;
   --field:#FBF1DF;
-  --round:"Baloo 2","Fredoka",Seravek,"Avenir Next",-apple-system,sans-serif;
-  --body:Charter,"Iowan Old Style",Palatino,Georgia,serif;
+  /* The crayon palette, straight from build_pdf.PALETTE. */
+  --c1:#E5322D; --c2:#F5871F; --c3:#FFD400; --c4:#43B049;
+  --c5:#0F9BD7; --c6:#7A4FBF; --c7:#EC5F9B; --c8:#00B39F;
+  --round:"Baloo 2","Fredoka One",Fredoka,"Chalkboard SE",Seravek,
+          "Avenir Next",-apple-system,"Segoe UI",sans-serif;
 }
 *{box-sizing:border-box}
-body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);
-  font-size:18px;line-height:1.6;-webkit-font-smoothing:antialiased}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--round);
+  font-size:19px;line-height:1.55;-webkit-font-smoothing:antialiased}
 .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 .skip{position:absolute;left:-9999px}
 .skip:focus{left:8px;top:8px;background:var(--accent);color:#fff;padding:8px 14px;
-  border-radius:4px;z-index:10}
+  border-radius:6px;z-index:20}
 a{color:var(--accent)}
-h1,h2,.eyebrow,.brand,nav,.go,.market,.where,.fine{font-family:var(--round)}
+img{max-width:100%;height:auto}
 
-header.site{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;
-  justify-content:space-between;padding:18px clamp(16px,4vw,48px);
-  border-bottom:1px solid var(--rule)}
-.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:21px;
-  color:var(--accent);text-decoration:none}
-.mark{font-size:26px;line-height:1}
-header nav{display:flex;align-items:center;gap:20px;font-size:15px}
-header nav a{text-decoration:none;font-weight:600}
-header nav a:hover{text-decoration:underline}
-.lang select{font:inherit;font-family:var(--round);padding:6px 10px;
-  border:1px solid var(--rule);border-radius:6px;background:var(--paper);
-  color:var(--ink)}
+/* ── header ─────────────────────────────────────────── */
+header.site{display:flex;flex-wrap:wrap;gap:14px 28px;align-items:center;
+  justify-content:space-between;padding:16px clamp(16px,4vw,52px);
+  background:var(--paper);border-bottom:3px solid var(--rule)}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;
+  color:var(--accent);font-weight:800;font-size:clamp(22px,2.6vw,30px);
+  letter-spacing:-.01em}
+.brand img{width:clamp(52px,6vw,72px);height:auto}
+header nav{display:flex;align-items:center;gap:22px;font-size:16px}
+header nav a{text-decoration:none;font-weight:700}
+header nav a:hover{color:var(--c1)}
+.lang select{font:inherit;font-family:var(--round);font-size:15px;padding:7px 12px;
+  border:2px solid var(--rule);border-radius:999px;background:var(--paper);
+  color:var(--ink);font-weight:600}
 
-main{max-width:1080px;margin:0 auto;padding:clamp(28px,5vw,64px) clamp(16px,4vw,48px) 80px}
-.eyebrow{font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--accent);margin:0 0 10px}
-h1{font-size:clamp(32px,5.5vw,52px);line-height:1.08;margin:0 0 .35em;
-  text-wrap:balance;max-width:16ch}
-.lede{font-size:21px;color:var(--soft);max-width:58ch;margin:0}
-.hero{padding:clamp(24px,5vw,56px);background:var(--field);border-radius:14px}
+main{max-width:1120px;margin:0 auto;padding:clamp(26px,4vw,56px) clamp(16px,4vw,52px) 70px}
 
-.genres{display:grid;gap:18px;margin-top:36px;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
-.genre{display:block;padding:28px;border:1px solid var(--rule);border-radius:12px;
-  text-decoration:none;color:var(--ink);transition:border-color .15s,transform .15s}
-.genre:hover{border-color:var(--accent);transform:translateY(-2px)}
-.genre h2{margin:0 0 8px;font-size:26px;color:var(--accent)}
-.genre p{margin:0 0 14px;color:var(--soft);font-size:16.5px}
-.go{font-weight:700;font-size:15px;color:var(--accent)}
+/* ── hero ───────────────────────────────────────────── */
+.hero{display:grid;gap:clamp(26px,4vw,54px);align-items:center;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.eyebrow{font-size:13px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--c1);margin:0 0 12px}
+h1{font-size:clamp(34px,5.4vw,58px);line-height:1.04;margin:0 0 .4em;
+  font-weight:800;letter-spacing:-.02em;text-wrap:balance}
+h1 em{font-style:normal;color:var(--accent);
+  text-decoration:underline;text-decoration-color:var(--c3);
+  text-decoration-thickness:.16em;text-underline-offset:.06em}
+.lede{font-size:19.5px;color:var(--soft);max-width:52ch;margin:0}
+.lede.big{font-size:22px;max-width:46ch}
+.cta{display:inline-block;margin-top:26px;background:var(--accent);color:#fff;
+  text-decoration:none;font-weight:800;font-size:18px;padding:14px 30px;
+  border-radius:999px;box-shadow:0 5px 0 #0d4a52;transition:transform .12s}
+.cta:hover{transform:translateY(2px);box-shadow:0 3px 0 #0d4a52}
+.cta:active{transform:translateY(5px);box-shadow:none}
 
-.pagehead{margin-bottom:8px}
-.soon{margin-top:34px;padding:clamp(20px,4vw,36px);background:var(--field);
-  border-radius:12px;max-width:62ch}
+/* Covers fanned out like books dropped on a table. */
+.fan{display:flex;justify-content:center;align-items:flex-end}
+/* ⚠️ Overlap is tuned so the TITLE on each cover stays readable. At -5.5%
+   the next cover ate the word ANIMALS, which defeats the point of showing
+   covers at all — the title IS the product. */
+.fanned{display:block;width:40%;margin-inline:-3.4%;border-radius:8px;
+  background:var(--field);padding:8px;transform:rotate(var(--tilt));
+  box-shadow:0 12px 30px rgba(42,52,64,.2);transition:transform .18s}
+.fanned:first-child{margin-left:0}
+.fanned:last-child{margin-right:0}
+.fanned:hover{transform:rotate(0deg) translateY(-10px) scale(1.05);z-index:3;
+  position:relative}
+.fanned img{display:block;border-radius:4px}
+
+/* ── three facts ────────────────────────────────────── */
+.pitch{display:grid;gap:18px;margin-top:clamp(40px,6vw,76px);
+  grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
+.bit{text-align:center;padding:26px 20px;border-radius:18px;background:var(--field)}
+.bit:nth-child(2){background:#C7EEEB}
+.bit:nth-child(3){background:#F9DCEC}
+.num{display:block;font-size:clamp(44px,6vw,62px);font-weight:800;line-height:1;
+  color:var(--accent)}
+.bit p{margin:10px 0 0;font-size:16.5px;color:var(--ink);font-weight:600}
+
+/* ── badge heading, the device off every cover ──────── */
+.badge{display:inline-block;background:var(--accent);color:var(--badge-ink);
+  font-weight:800;font-size:clamp(24px,3.6vw,40px);letter-spacing:-.01em;
+  padding:.42em 1.15em;border-radius:999px;margin:0 0 18px;
+  box-shadow:0 0 0 7px var(--paper),0 0 0 11px var(--accent)}
+.pagehead{margin:8px 0 clamp(30px,5vw,52px)}
+
+/* ── book grid ──────────────────────────────────────── */
+.books{display:grid;gap:clamp(20px,3vw,34px);
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.book{display:block;text-decoration:none;color:var(--ink);border-radius:20px;
+  background:var(--field);padding:22px 20px 24px;text-align:center;
+  transform:rotate(var(--tilt));transition:transform .18s,box-shadow .18s;
+  box-shadow:0 8px 0 rgba(42,52,64,.12)}
+.book:hover{transform:rotate(0deg) translateY(-6px);
+  box-shadow:0 16px 34px rgba(42,52,64,.22)}
+.shelf{display:block;margin-bottom:16px}
+.shelf img{display:block;width:100%;border-radius:6px;
+  box-shadow:0 8px 20px rgba(42,52,64,.22)}
+.meta{display:block}
+.bt{display:block;font-size:26px;font-weight:800;line-height:1.1}
+.bd{display:block;font-size:16px;color:var(--soft);margin:6px 0 12px}
+.market{display:inline-block;font-size:12.5px;font-weight:800;letter-spacing:.03em;
+  color:#fff;background:var(--accent);border-radius:999px;padding:5px 14px}
+.market.soon{background:var(--c2);color:#3a2400}
+
+/* ── one title ──────────────────────────────────────── */
+.title{display:grid;gap:clamp(26px,4vw,52px);align-items:start;
+  grid-template-columns:minmax(0,4fr) minmax(0,5fr)}
+.art{background:var(--field);border-radius:20px;padding:clamp(18px,3vw,34px)}
+.art img{display:block;border-radius:6px;box-shadow:0 14px 34px rgba(42,52,64,.24)}
+.sub{font-size:17px;color:var(--soft);margin:0 0 18px}
+.bullets{padding-left:0;margin:22px 0 0;list-style:none}
+.bullets li{position:relative;padding-left:34px;margin-bottom:11px;font-weight:600}
+.bullets li::before{content:"";position:absolute;left:0;top:.42em;width:18px;
+  height:18px;border-radius:50%;background:var(--c3)}
+.bullets li:nth-child(2)::before{background:var(--c4)}
+.bullets li:nth-child(3)::before{background:var(--c5)}
+.buy{margin-top:26px;font-weight:700}
+.buy.soon{color:var(--soft)}
+.isbn{font-size:14px;color:var(--soft);margin:4px 0 0}
+
+/* ── the colour-in holding page ─────────────────────── */
+.soon{margin-top:30px;padding:clamp(22px,4vw,38px);background:var(--field);
+  border-radius:20px;max-width:60ch}
 .soon p{margin:0 0 14px}
 .soon p:last-child{margin:0}
-.books{display:grid;gap:22px;margin-top:32px;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
-.book{display:block;text-decoration:none;color:var(--ink);border-radius:12px;
-  overflow:hidden;border:1px solid var(--rule);background:var(--field);
-  transition:transform .15s,box-shadow .15s}
-.book:hover{transform:translateY(-3px);box-shadow:0 8px 26px rgba(42,52,64,.13)}
-.book img{display:block;width:100%;height:auto;max-width:100%}
-.book .meta{padding:18px 20px 22px;background:var(--paper)}
-.book h2{margin:0 0 6px;font-size:23px}
-.book p{margin:0;font-size:16px;color:var(--soft)}
-.where{margin-top:10px !important;display:flex;flex-wrap:wrap;gap:6px}
-.market{font-size:12px;font-weight:700;letter-spacing:.04em;color:var(--accent);
-  background:var(--field);border-radius:20px;padding:3px 11px}
 
-.title{display:grid;gap:clamp(24px,4vw,48px);align-items:start;
-  grid-template-columns:minmax(0,4fr) minmax(0,5fr)}
-.art{background:var(--field);border-radius:12px;padding:clamp(16px,3vw,32px)}
-.art img{display:block;width:100%;height:auto;border-radius:4px;
-  box-shadow:0 10px 30px rgba(42,52,64,.18)}
-.sub{font-size:17px;color:var(--soft);margin:0 0 18px}
-.copy h2{font-size:14px;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--soft);margin:34px 0 12px;padding-bottom:8px;
-  border-bottom:1px solid var(--rule)}
-.bullets{padding-left:1.1em;margin:18px 0 0}
-.bullets li{margin-bottom:7px}
-.editions{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px}
-.editions li{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline;
-  font-family:var(--round);font-size:15.5px}
-.editions span{color:var(--soft)}
-.editions code{font-size:13.5px;color:var(--soft)}
-@media (max-width:720px){.title{grid-template-columns:1fr}}
+/* ── the crayon row, the series' signature device ───── */
+.crayons{height:clamp(56px,7vw,92px);margin-top:clamp(40px,6vw,70px);
+  background:url("/brand/crayons.png") repeat-x bottom center;
+  background-size:auto 100%}
 
-footer.site{border-top:1px solid var(--rule);padding:34px clamp(16px,4vw,48px) 60px;
-  color:var(--soft);font-size:15.5px}
-footer.site p{margin:0 0 6px;max-width:60ch}
-.fine{font-size:13px;margin-top:14px !important}
+footer.site{border-top:3px solid var(--rule);padding:32px clamp(16px,4vw,52px) 60px;
+  color:var(--soft);font-size:16px;text-align:center}
+footer.site img{width:64px;margin-bottom:8px}
+footer.site p{margin:0 auto 8px;max-width:56ch}
+.fine{font-size:13.5px;margin-top:14px !important}
+
+@media (max-width:820px){
+  .hero,.title{grid-template-columns:1fr}
+  .fan{margin-top:6px}
+}
