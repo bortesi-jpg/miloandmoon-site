@@ -36,9 +36,23 @@ header.site{display:flex;flex-wrap:wrap;gap:14px 28px;align-items:center;
 header nav{display:flex;align-items:center;gap:22px;font-size:16px}
 header nav a{text-decoration:none;font-weight:700}
 header nav a:hover{color:var(--c1)}
-.lang select{font:inherit;font-family:var(--round);font-size:15px;padding:7px 12px;
-  border:2px solid var(--rule);border-radius:999px;background:var(--paper);
-  color:var(--ink);font-weight:600}
+/* The edition picker. It stays a native <select> on purpose — on a phone that
+   opens the OS wheel, which is a better control than anything rebuilt in
+   div-and-JavaScript, and it needs no script at all. Only the chrome is
+   restyled: appearance:none removes the system look, and the chevron is an
+   inline SVG data URI so it costs no request. */
+.lang{position:relative;display:inline-flex;align-items:center}
+.lang select{appearance:none;-webkit-appearance:none;font:inherit;
+  font-family:var(--round);font-size:15px;font-weight:700;
+  padding:9px 40px 9px 18px;border:2.5px solid var(--accent);border-radius:999px;
+  background-color:var(--paper);color:var(--accent);cursor:pointer;
+  box-shadow:0 3px 0 var(--accent);transition:transform .12s,box-shadow .12s;
+  background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5 6 6.5l5-5' fill='none' stroke='%2314646E' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 15px center;
+  background-size:12px 8px}
+.lang select:hover{background-color:#F3FAFA}
+.lang select:active{transform:translateY(3px);box-shadow:none}
+.lang select:focus-visible{outline:3px solid var(--c3);outline-offset:3px}
 
 main{max-width:1120px;margin:0 auto;padding:clamp(26px,4vw,56px) clamp(16px,4vw,52px) 70px}
 
