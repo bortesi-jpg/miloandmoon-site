@@ -163,6 +163,18 @@ h1 em{font-style:normal;color:var(--accent);
 .soon p{margin:0 0 14px}
 .soon p:last-child{margin:0}
 
+/* ── the coloured examples on /colours ───────────────── */
+/* Three across on a desktop, one on a phone. `minmax(0,1fr)` not `1fr`:
+   a bare 1fr refuses to shrink below the image's intrinsic width and the
+   row overflows on a narrow screen instead of wrapping. */
+.coloured{display:grid;gap:18px;margin:28px 0;
+  grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr))}
+.coloured figure{margin:0}
+.coloured img{width:100%;height:auto;display:block;border-radius:14px;
+  background:#fff;border:1px solid rgba(0,0,0,.07)}
+.coloured figcaption{margin-top:8px;font-size:.9rem;color:var(--muted);
+  text-align:center}
+
 /* ── the crayon row, the series' signature device ───── */
 .crayons{height:clamp(56px,7vw,92px);margin-top:clamp(40px,6vw,70px);
   background:url("/brand/crayons.png") repeat-x bottom center;
