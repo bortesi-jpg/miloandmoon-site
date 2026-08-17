@@ -2,7 +2,7 @@
    build_pdf.py, so the site and the printed books cannot drift apart. */
 :root{
   --ink:#2A3440;              /* BODY_INK: the type on every printed cover */
-  --accent:#14646E;           /* the badge teal, identical on all 11 covers */
+  --accent:#14233F;           /* the brand navy, identical on all 11 covers */
   --badge-ink:#FFF6E4;        /* INK: the cream type inside the badge */
   --paper:#FFFDF9;            /* warm, not clinical white */
   --rule:#EDE6DA;
@@ -47,7 +47,7 @@ header nav a:hover{color:var(--c1)}
   padding:9px 40px 9px 18px;border:2.5px solid var(--accent);border-radius:999px;
   background-color:var(--paper);color:var(--accent);cursor:pointer;
   box-shadow:0 3px 0 var(--accent);transition:transform .12s,box-shadow .12s;
-  background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5 6 6.5l5-5' fill='none' stroke='%2314646E' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5 6 6.5l5-5' fill='none' stroke='%2314233F' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
   background-repeat:no-repeat;background-position:right 15px center;
   background-size:12px 8px}
 .lang select:hover{background-color:#F3FAFA}
