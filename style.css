@@ -227,9 +227,30 @@ footer.site p{margin:0 auto 8px;max-width:56ch}
      narrow phone it drops to its own line rather than off the screen. */
   header nav{gap:10px 14px;font-size:14.5px;width:100%;flex-wrap:wrap;
     justify-content:flex-start}
-  header nav a{white-space:nowrap}
+  /* ⛔ 44px MINIMUM ON ANYTHING A THUMB HAS TO HIT. These links were 22px
+     tall — the height of the type and nothing else — which is half the target
+     size WCAG 2.5.8 and Apple's HIG both ask for, on the primary navigation of
+     a site whose visitors arrive by scanning a QR code from inside a book, i.e.
+     on a phone, one-handed, quite possibly with a child attached.
+     ⚠️ The padding does the work, not the font size: the label stays 14.5px and
+     looks identical. Vertical padding is the cheapest accessibility fix there
+     is and it is invisible.
+     📌 Links inside a SENTENCE are deliberately left alone — 2.5.8 exempts
+     inline text targets, and boxing them out would wreck the line spacing of
+     the footer prose. The rule is about controls, not about every anchor. */
+  header nav a{white-space:nowrap;display:inline-flex;align-items:center;
+    min-height:44px}
+  .skip{min-height:44px;display:inline-flex;align-items:center}
   .lang{margin-left:auto}
-  .lang select{font-size:14px;padding:6px 10px;max-width:100%}
+  /* ⛔ THE RIGHT PADDING IS THE CHEVRON'S ROOM, NOT SPARE SPACE. This said
+     `padding:6px 10px`, which shrank the select to fit the row — and shrank it
+     by deleting the 40px right pad the base rule reserves for the arrow. The
+     arrow is a background-image at `right 15px`, so it does not move when the
+     padding does: on every phone it was painted straight over the last letter
+     of "United Kingdom". 📌 Shorthand padding overrides all four sides; the one
+     you were not thinking about is the one that breaks. */
+  .lang select{font-size:14px;padding:6px 32px 6px 14px;max-width:100%;
+    background-position:right 12px center}
   .brand{font-size:22px;gap:9px}
   .brand img{width:46px}
   .cta{width:100%;text-align:center}
