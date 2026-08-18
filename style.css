@@ -7,7 +7,10 @@
   --paper:#FFFDF9;            /* warm, not clinical white */
   --rule:#EDE6DA;
   --soft:#5F6874;
-  --field:#FBF1DF;
+  /* ⚠️ FALLBACK ONLY — every page sets --field inline from cover_layout.tint().
+     This literal is what shows if that ever stops happening, so it is written
+     as the Vehicles tint and must be updated with it. */
+  --field:#FBECD5;
   /* The crayon palette, straight from build_pdf.PALETTE. */
   --c1:#E5322D; --c2:#F5871F; --c3:#FFD400; --c4:#43B049;
   --c5:#0F9BD7; --c6:#7A4FBF; --c7:#EC5F9B; --c8:#00B39F;
@@ -92,8 +95,10 @@ h1 em{font-style:normal;color:var(--accent);
 .pitch{display:grid;gap:18px;margin-top:clamp(40px,6vw,76px);
   grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
 .bit{text-align:center;padding:26px 20px;border-radius:18px;background:var(--field)}
-.bit:nth-child(2){background:#C7EEEB}
-.bit:nth-child(3){background:#F9DCEC}
+/* ⚠️ Two more retired pastels, used decoratively. Now the lagoon and blush
+   TINTS, so the three facts sit on colours that belong to real books. */
+.bit:nth-child(2){background:#D0F5F1}
+.bit:nth-child(3){background:#FFE6F6}
 .num{display:block;font-size:clamp(44px,6vw,62px);font-weight:800;line-height:1;
   color:var(--accent)}
 .bit p{margin:10px 0 0;font-size:16.5px;color:var(--ink);font-weight:600}
