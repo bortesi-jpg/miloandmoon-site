@@ -168,14 +168,28 @@ h1 em{font-style:normal;color:var(--accent);
 .soon p{margin:0 0 14px}
 .soon p:last-child{margin:0}
 
-/* ── the coloured examples on /colours ───────────────── */
+/* ── the finished examples on /colours ───────────────── */
+/* ⛔ THE CLASS IS `finished`, NOT `coloured`, AND THAT IS LOAD-BEARING.
+   `build_site.py` spell-localises the WHOLE page body for the US edition and
+   cannot tell prose from an identifier, so `class="coloured"` became
+   `class="colored"` in the markup while the stylesheet still said `.coloured`.
+   The selector matched nothing: no grid, no `width:100%`, and every finished
+   page fell back to its `width="520"` attribute. **The US page rendered the
+   images at a different size from the UK one** — the only visible symptom of a
+   rule that had already been written down and then broken.
+   📌 Same fault as `/brand/coloured-digger.png` → `colored-digger.png`, which
+   404'd every image on the US page and is why these files are called
+   `finished-*`. The FILENAMES were fixed; the CLASS NAME was missed.
+   ⚠️ Any string that is both content and identifier — class, id, anchor, query
+   key, data attribute — must be dialect-free. Pick a synonym the localiser
+   does not know. */
 /* Three across on a desktop, one on a phone. `minmax(0,1fr)` not `1fr`:
    a bare 1fr refuses to shrink below the image's intrinsic width and the
    row overflows on a narrow screen instead of wrapping. */
-.coloured{display:grid;gap:18px;margin:28px 0;
+.finished{display:grid;gap:18px;margin:28px 0;
   grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr))}
-.coloured figure{margin:0}
-.coloured img{width:100%;height:auto;display:block;border-radius:14px;
+.finished figure{margin:0}
+.finished img{width:100%;height:auto;display:block;border-radius:14px;
   background:#fff;border:1px solid rgba(0,0,0,.07)}
 
 /* ── grouped under each book's cover ──────────────────── */
@@ -190,7 +204,7 @@ h1 em{font-style:normal;color:var(--accent);
 @media (max-width:430px){
   .bookgroup-head{gap:13px}
 }
-.coloured figcaption{margin-top:8px;font-size:.9rem;color:var(--muted);
+.finished figcaption{margin-top:8px;font-size:.9rem;color:var(--muted);
   text-align:center}
 
 /* ── the crayon row, the series' signature device ───── */
