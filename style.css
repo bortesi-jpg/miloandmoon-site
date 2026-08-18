@@ -172,6 +172,19 @@ h1 em{font-style:normal;color:var(--accent);
 .coloured figure{margin:0}
 .coloured img{width:100%;height:auto;display:block;border-radius:14px;
   background:#fff;border:1px solid rgba(0,0,0,.07)}
+
+/* ── grouped under each book's cover ──────────────────── */
+/* The cover leads the group so a reader arriving from the QR code inside one
+   title can see at a glance which book these pages came from. */
+.bookgroup{margin:40px 0 8px}
+.bookgroup-head{display:flex;align-items:center;gap:18px;
+  padding-bottom:14px;border-bottom:2px solid var(--field)}
+.bookgroup-head h2{margin:0;font-size:clamp(21px,3vw,27px)}
+.bookgroup-cover{width:clamp(64px,9vw,92px);height:auto;display:block;
+  border-radius:5px;box-shadow:0 6px 16px rgba(42,52,64,.22)}
+@media (max-width:430px){
+  .bookgroup-head{gap:13px}
+}
 .coloured figcaption{margin-top:8px;font-size:.9rem;color:var(--muted);
   text-align:center}
 
